@@ -1,12 +1,10 @@
 from deep_translator import GoogleTranslator
 
-import services.influencers_service as influencers_service
-
-translator = GoogleTranslator(source='auto', target='en')
-influencers = influencers_service.get_influencers()
+from services.influencers_service import InfluencersService
+from shared.mongo import MongoConnection
 
 
-def translate_title(influencer, post_type):
+def translate_title(influencer, post_type, *, translator, influencers_service):
     posts = influencer.get(post_type, [])
     updated_posts = []
     for post in posts:
@@ -22,7 +20,7 @@ def translate_title(influencer, post_type):
         influencers_service.update_influencer(influencer, post_type, updated_posts)
 
 
-def translate_captions(influencer, post_type):
+def translate_captions(influencer, post_type, *, translator, influencers_service):
     posts = influencer.get(post_type, [])
     updated_posts = []
     for post in posts:
@@ -41,15 +39,25 @@ def translate_captions(influencer, post_type):
         influencers_service.update_influencer(influencer, post_type, updated_posts)
 
 
-# translate bio and captions
-for influencer in influencers:
-    # translate bio
-    bio=influencer.get('Bio')
-    translated_bio=translator.translate(bio)
-    print( "translated: ",translated_bio)
-    influencers_service.update_influencer(influencer,'Bio',translated_bio)
-    # translate post captions
-    # translate_captions(influencer,'videos')
-    # translate_captions(influencer,'images')
-    # translate_title(influencer, 'videos')
-    # translate_title(influencer, 'images')
+def main():
+    translator = GoogleTranslator(source='auto', target='en')
+    mongo_connection = MongoConnection()
+    influencers_service = InfluencersService(mongo_connection)
+    influencers = influencers_service.get_influencers()
+
+    # translate bio and captions
+    for influencer in influencers:
+        # translate bio
+        bio = influencer.get('Bio')
+        translated_bio = translator.translate(bio)
+        print("translated: ", translated_bio)
+        influencers_service.update_influencer(influencer, 'Bio', translated_bio)
+        # translate post captions
+        # translate_captions(influencer, 'videos', translator=translator, influencers_service=influencers_service)
+        # translate_captions(influencer, 'images', translator=translator, influencers_service=influencers_service)
+        # translate_title(influencer, 'videos', translator=translator, influencers_service=influencers_service)
+        # translate_title(influencer, 'images', translator=translator, influencers_service=influencers_service)
+
+
+if __name__ == '__main__':
+    main()

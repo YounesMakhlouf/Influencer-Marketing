@@ -1,13 +1,16 @@
 import spacy
-import services.influencers_service as influencers_service
-from unidecode import unidecode
 
+from services.influencers_service import InfluencersService
+from shared.mongo import MongoConnection
+
+mongo_connection = MongoConnection()
+influencers_service = InfluencersService(mongo_connection)
 influencers = influencers_service.get_influencers()
+
+nlp = spacy.load("en_core_web_sm", disable=["parser", "ner"])
 
 
 def lemmatize_text(text):
-    nlp = spacy.load("en_core_web_sm", disable=["parser", "ner"])
-    allowed_postags = ["NOUN", "AD", "VERB", "ADV"]
     doc = nlp(text)
     new_text = []
     for word in doc:
@@ -17,7 +20,7 @@ def lemmatize_text(text):
     return lemmatized_text
 
 
-def lemmatize_capions(influencer, post_type):
+def lemmatize_captions(influencer, post_type):
     posts = influencer.get(post_type, [])
     updated_posts = []
     for post in posts:
@@ -61,5 +64,5 @@ for influencer in influencers:
     i=i+1
     # lemmatize_titles(influencer, 'images')
     # lemmatize_titles(influencer, 'videos')
-    # lemmatize_capions(influencer, 'images')
-    # lemmatize_capions(influencer, 'videos')
+    # lemmatize_captions(influencer, 'images')
+    # lemmatize_captions(influencer, 'videos')

@@ -1,12 +1,8 @@
 import nltk
 from nltk.corpus import stopwords
 
-import services.influencers_service as influencers_service
-
-nltk.download('stopwords')
-
-stopwords_en = stopwords.words('english')
-influencers = influencers_service.get_influencers()
+from services.influencers_service import InfluencersService
+from shared.mongo import MongoConnection
 
 
 # Fonction pour supprimer les stopwords d'un texte
@@ -16,7 +12,7 @@ def remove_stopwords(text, stopwords_list):
     return ' '.join(words)
 
 
-def remove_captions_stopwords(influencer, post_type):
+def remove_captions_stopwords(influencer, post_type, *, stopwords_en, influencers_service):
     posts = influencer.get(post_type, [])
     updated_posts = []
     for post in posts:
@@ -35,7 +31,7 @@ def remove_captions_stopwords(influencer, post_type):
         influencers_service.update_influencer(influencer, post_type, updated_posts)
 
 
-def remove_title_stopwords(influencer, post_type):
+def remove_title_stopwords(influencer, post_type, *, stopwords_en, influencers_service):
     posts = influencer.get(post_type, [])
     updated_posts = []
     for post in posts:
@@ -51,14 +47,25 @@ def remove_title_stopwords(influencer, post_type):
         influencers_service.update_influencer(influencer, post_type, updated_posts)
 
 
-for influencer in influencers:
-    # remove from bio bio
-    bio = influencer.get('Bio')
-    no_stopwords_bio = remove_stopwords(bio, stopwords_en)
-    print(no_stopwords_bio)
-    influencers_service.update_influencer(influencer, 'Bio', no_stopwords_bio)
-    # # Supprimer les stopwords des profils
-    # remove_title_stopwords(influencer, 'videos')
-    # remove_title_stopwords(influencer, 'images')
-    # remove_captions_stopwords(influencer, 'images')
-    # remove_captions_stopwords(influencer, 'images')
+def main():
+    nltk.download('stopwords')
+    stopwords_en = stopwords.words('english')
+    mongo_connection = MongoConnection()
+    influencers_service = InfluencersService(mongo_connection)
+    influencers = influencers_service.get_influencers()
+
+    for influencer in influencers:
+        # remove from bio
+        bio = influencer.get('Bio')
+        no_stopwords_bio = remove_stopwords(bio, stopwords_en)
+        print(no_stopwords_bio)
+        influencers_service.update_influencer(influencer, 'Bio', no_stopwords_bio)
+        # # Supprimer les stopwords des profils
+        # remove_title_stopwords(influencer, 'videos', stopwords_en=stopwords_en, influencers_service=influencers_service)
+        # remove_title_stopwords(influencer, 'images', stopwords_en=stopwords_en, influencers_service=influencers_service)
+        # remove_captions_stopwords(influencer, 'images', stopwords_en=stopwords_en, influencers_service=influencers_service)
+        # remove_captions_stopwords(influencer, 'images', stopwords_en=stopwords_en, influencers_service=influencers_service)
+
+
+if __name__ == '__main__':
+    main()
