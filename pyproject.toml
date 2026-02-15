@@ -39,6 +39,16 @@ dev = [
 [tool.uv]
 # Python version pinned via .python-version file
 
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cpu", marker = "platform_system == 'Linux'" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
 [tool.ruff]
 target-version = "py310"
 line-length = 120

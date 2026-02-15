@@ -23,7 +23,7 @@ COPY shared/ /app/shared/
 COPY config.ini /app/
 
 # Download NLTK data and spaCy model at build time
-RUN uv run python -m spacy download en_core_web_sm && \
+RUN uv pip install en-core-web-sm@https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl && \
     uv run python -c "import nltk; nltk.download('stopwords', quiet=True)"
 
 # Make port 5000 available to the world outside this container
