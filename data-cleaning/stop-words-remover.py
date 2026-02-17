@@ -1,11 +1,15 @@
+import logging
+
 import nltk
 from nltk.corpus import stopwords
 
 from services.influencers_service import InfluencersService
 from shared.mongo import MongoConnection
 
+logger = logging.getLogger(__name__)
 
-# Fonction pour supprimer les stopwords d'un texte
+
+# Remove stopwords from a text
 def remove_stopwords(text, stopwords_list):
     words = text.split()
     words = [word for word in words if word not in stopwords_list]
@@ -22,9 +26,9 @@ def remove_captions_stopwords(influencer, post_type, *, stopwords_en, influencer
             try:
                 no_stopwords_caption = remove_stopwords(caption, stopwords_en)
             except Exception as e:
-                print(f"An exception occurred: {e}. Skipping this caption.")
+                logger.warning("Skipping caption: %s", e)
                 continue
-            print(no_stopwords_caption)
+            logger.debug(no_stopwords_caption)
             no_stopwords_captions.append(no_stopwords_caption)
             post["captions"] = no_stopwords_captions
             updated_posts.append(post)
@@ -39,9 +43,9 @@ def remove_title_stopwords(influencer, post_type, *, stopwords_en, influencers_s
         try:
             no_stopwords_title = remove_stopwords(title, stopwords_en)
         except Exception as e:
-            print(f"An exception occurred: {e}. Skipping this caption.")
+            logger.warning("Skipping title: %s", e)
             continue
-        print(no_stopwords_title)
+        logger.debug(no_stopwords_title)
         post["title"] = no_stopwords_title
         updated_posts.append(post)
         influencers_service.update_influencer(influencer, post_type, updated_posts)
@@ -58,7 +62,7 @@ def main():
         # remove from bio
         bio = influencer.get("Bio")
         no_stopwords_bio = remove_stopwords(bio, stopwords_en)
-        print(no_stopwords_bio)
+        logger.debug(no_stopwords_bio)
         influencers_service.update_influencer(influencer, "Bio", no_stopwords_bio)
         # # Supprimer les stopwords des profils
         # remove_title_stopwords(influencer, 'videos', stopwords_en=stopwords_en, influencers_service=influencers_service)

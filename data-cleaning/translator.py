@@ -1,7 +1,11 @@
+import logging
+
 from deep_translator import GoogleTranslator
 
 from services.influencers_service import InfluencersService
 from shared.mongo import MongoConnection
+
+logger = logging.getLogger(__name__)
 
 
 def translate_title(influencer, post_type, *, translator, influencers_service):
@@ -12,9 +16,9 @@ def translate_title(influencer, post_type, *, translator, influencers_service):
         try:
             translated_title = translator.translate(title)
         except Exception as e:
-            print(f"An exception occurred: {e}. Skipping this caption.")
+            logger.warning("Skipping title translation: %s", e)
             continue
-        print(translated_title)
+        logger.debug(translated_title)
         post["title"] = translated_title
         updated_posts.append(post)
         influencers_service.update_influencer(influencer, post_type, updated_posts)
@@ -30,9 +34,9 @@ def translate_captions(influencer, post_type, *, translator, influencers_service
             try:
                 translated_caption = translator.translate(caption)
             except Exception as e:
-                print(f"An exception occurred: {e}. Skipping this caption.")
+                logger.warning("Skipping caption translation: %s", e)
                 continue
-            print(translated_caption)
+            logger.debug(translated_caption)
             translated_captions.append(translated_caption)
             post["captions"] = translated_captions
             updated_posts.append(post)
@@ -50,7 +54,7 @@ def main():
         # translate bio
         bio = influencer.get("Bio")
         translated_bio = translator.translate(bio)
-        print("translated: ", translated_bio)
+        logger.info("Translated bio: %s", translated_bio)
         influencers_service.update_influencer(influencer, "Bio", translated_bio)
         # translate post captions
         # translate_captions(influencer, 'videos', translator=translator, influencers_service=influencers_service)

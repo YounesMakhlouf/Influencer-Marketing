@@ -1,7 +1,11 @@
+import logging
+
 from unidecode import unidecode
 
 from services.influencers_service import InfluencersService
 from shared.mongo import MongoConnection
+
+logger = logging.getLogger(__name__)
 
 
 def remove_emojis(text):
@@ -18,9 +22,9 @@ def remove_caption_emojis(influencer, post_type, *, influencers_service):
             try:
                 no_emoji_caption = remove_emojis(caption)
             except Exception as e:
-                print(f"An exception occurred: {e}. Skipping this caption.")
+                logger.warning("Skipping caption: %s", e)
                 continue
-            print(no_emoji_caption)
+            logger.debug(no_emoji_caption)
             no_emoji_captions.append(no_emoji_caption)
             post["captions"] = no_emoji_captions
             updated_posts.append(post)
@@ -35,9 +39,9 @@ def remove_title_emojis(influencer, post_type, *, influencers_service):
         try:
             no_emojis_title = remove_emojis(title)
         except Exception as e:
-            print(f"An exception occurred: {e}. Skipping this caption.")
+            logger.warning("Skipping title: %s", e)
             continue
-        print(no_emojis_title)
+        logger.debug(no_emojis_title)
         post["title"] = no_emojis_title
         updated_posts.append(post)
         influencers_service.update_influencer(influencer, post_type, updated_posts)
