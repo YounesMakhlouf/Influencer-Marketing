@@ -33,9 +33,7 @@ def get_config():
             break
         search_dir = parent
 
-    raise FileNotFoundError(
-        "config.ini not found. Ensure it exists in the project root."
-    )
+    raise FileNotFoundError("config.ini not found. Ensure it exists in the project root.")
 
 
 def get_mongo_config():

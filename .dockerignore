@@ -11,6 +11,8 @@ scripts/
 !web/bert_9.pkl
 *.ipynb
 *.csv
+*.egg-info/
+Influencers.json
 .dockerignore
 Makefile
 README.md

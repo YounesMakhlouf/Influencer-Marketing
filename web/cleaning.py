@@ -4,7 +4,7 @@ import string
 
 from unidecode import unidecode
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 _stopwords_en: set[str] | None = None
 _nlp = None
@@ -16,7 +16,7 @@ def _get_stopwords() -> set[str]:
     if _stopwords_en is None:
         from nltk.corpus import stopwords
 
-        _stopwords_en = set(stopwords.words('english'))
+        _stopwords_en = set(stopwords.words("english"))
     return _stopwords_en
 
 
@@ -34,7 +34,7 @@ def _get_translator():
     if _translator is None:
         from deep_translator import GoogleTranslator
 
-        _translator = GoogleTranslator(source='auto', target='en')
+        _translator = GoogleTranslator(source="auto", target="en")
     return _translator
 
 
@@ -52,10 +52,10 @@ def clean_and_process_content(content):
 
     try:
         # Removing URLs
-        content = re.sub(r'http\S+', '', content)
+        content = re.sub(r"http\S+", "", content)
 
         # Removing Special Characters
-        content = re.sub(r'\W+', ' ', content)
+        content = re.sub(r"\W+", " ", content)
 
         # Removing Emojis
         content = unidecode(content)
@@ -67,11 +67,11 @@ def clean_and_process_content(content):
             f"An exception occurred during cleaning or translation: {e}. Proceeding with original content without translation."
         )
 
-    content = content.lower().translate(str.maketrans('', '', string.punctuation))
+    content = content.lower().translate(str.maketrans("", "", string.punctuation))
 
     # Removing Stopwords
     words = content.split()
-    content = ' '.join([word for word in words if word not in _get_stopwords()])
+    content = " ".join([word for word in words if word not in _get_stopwords()])
 
     # Lemmatizing Text
     try:

@@ -18,13 +18,13 @@ def lemmatize_captions(influencer, post_type, *, nlp, influencers_service):
     posts = influencer.get(post_type, [])
     updated_posts = []
     for post in posts:
-        captions = post.get('captions', [])
+        captions = post.get("captions", [])
         lemmatized_captions = []
         for caption in captions:
             lemmatized_caption = lemmatize_text(caption, nlp=nlp)
             print(lemmatized_caption)
             lemmatized_captions.append(lemmatized_caption)
-            post['captions'] = lemmatized_captions
+            post["captions"] = lemmatized_captions
             updated_posts.append(post)
             influencers_service.update_influencer(influencer, post_type, updated_posts)
 
@@ -33,20 +33,20 @@ def lemmatize_titles(influencer, post_type, *, nlp, influencers_service):
     posts = influencer.get(post_type, [])
     updated_posts = []
     for post in posts:
-        title = post.get('title')
+        title = post.get("title")
         lemmatized_title = lemmatize_text(title, nlp=nlp)
         print(lemmatized_title)
-        post['title'] = lemmatized_title
+        post["title"] = lemmatized_title
         updated_posts.append(post)
         influencers_service.update_influencer(influencer, post_type, updated_posts)
 
 
 def lemmatize_bio(influencer, *, nlp, influencers_service):
-    bio = influencer.get('Bio')
+    bio = influencer.get("Bio")
     print(bio)
     lemmatized_bio = lemmatize_text(bio, nlp=nlp)
     print(lemmatized_bio)
-    influencers_service.update_influencer(influencer, 'Bio', lemmatized_bio)
+    influencers_service.update_influencer(influencer, "Bio", lemmatized_bio)
 
 
 def main():
@@ -64,5 +64,5 @@ def main():
         # lemmatize_captions(influencer, 'videos', nlp=nlp, influencers_service=influencers_service)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

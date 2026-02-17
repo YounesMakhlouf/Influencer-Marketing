@@ -8,7 +8,7 @@ from shared.config import get_mongo_config
 
 
 class MongoConnection:
-    _instance: Optional['MongoConnection'] = None
+    _instance: Optional["MongoConnection"] = None
 
     def __new__(cls):
         if cls._instance is None:
@@ -23,7 +23,7 @@ class MongoConnection:
                 cls.client = MongoClient(cls.host, cls.port, serverSelectionTimeoutMS=5000)
 
                 # Testing the connection
-                cls.client.admin.command('ping')
+                cls.client.admin.command("ping")
 
                 cls.database = cls.client[cls.database_name]
                 cls.collection = cls.database[cls.mongo_config.get("INFLUENCERS_COLLECTION")]
@@ -43,7 +43,3 @@ class MongoConnection:
         else:
             logging.error("Database connection is not established")
             raise ConnectionFailure("Database connection is not established")
-
-
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

@@ -36,7 +36,7 @@ dev = [
 ]
 
 [tool.setuptools.packages.find]
-include = ["services*", "shared*", "data_cleaning*", "dataScraper*", "web*"]
+include = ["services*", "shared*", "dataScraper*", "web*"]
 
 [tool.uv]
 # Python version pinned via .python-version file

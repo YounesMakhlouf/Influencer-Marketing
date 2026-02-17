@@ -2,9 +2,9 @@ import jmespath
 
 
 def parse_user(data):
-	"""Parse instagram user's hidden web dataset for user's data"""
-	result = jmespath.search(
-		"""{
+    """Parse instagram user's hidden web dataset for user's data"""
+    result = jmespath.search(
+        """{
 		name: full_name,
 		username: username,
 		id: id,
@@ -60,6 +60,6 @@ def parse_user(data):
 		collections_count: edge_saved_media.count,
 		related_profiles: edge_related_profiles.edges[].node.username
 	}""",
-		data,
-	)
-	return result
+        data,
+    )
+    return result
