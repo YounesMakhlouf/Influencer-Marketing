@@ -21,6 +21,33 @@ class InfluencersService:
             logging.error("An error occurred while fetching influencers: %s", str(e))
             return []
 
+    def get_bio_documents(self, noise_words: set[str] | None = None) -> list[str]:
+        """Build a list of text documents from influencer bios + categories.
+
+        Each document is the concatenation of the influencer's Bio and Category
+        (when they are not ``"NULL"``).  Optional *noise_words* are stripped from
+        every document before it is added to the result.
+
+        Returns:
+            A list of non-empty document strings ready for topic modelling.
+        """
+        if noise_words is None:
+            noise_words = set()
+        influencers = self.get_influencers()
+        docs: list[str] = []
+        for influencer in influencers:
+            doc = ""
+            if influencer.get("Bio", "NULL") != "NULL":
+                doc += influencer["Bio"]
+            if influencer.get("Category", "NULL") != "NULL":
+                doc += " " + influencer["Category"]
+            if doc.strip():
+                for w in noise_words:
+                    doc = doc.replace(w, "")
+                docs.append(doc)
+        logging.info("Built %d bio documents", len(docs))
+        return docs
+
     def get_posts(self):
         try:
             posts = list(self.posts_collection.find())
