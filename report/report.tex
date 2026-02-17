@@ -1,0 +1,412 @@
+\documentclass[12pt]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[hidelinks]{hyperref}
+\usepackage{biblatex}
+\addbibresource{reference.bib}
+\usepackage{tablefootnote}
+\usepackage{url}
+
+\begin{document}
+
+\renewcommand*\contentsname{Table des matières}
+\renewcommand{\listfigurename}{Liste des figures}
+\renewcommand{\listtablename}{Liste des tableaux}
+
+\tableofcontents
+\clearpage
+\listoffigures
+\clearpage
+\listoftables
+\clearpage
+
+\section{Cadre du projet}
+\subsection{Présentation du projet}
+ Le marketing d’influence est un type de marketing qui s’appuie sur des personnalités publiques connues pour promouvoir un produit ou une idéologie. Ce type de marketing rentre dans la  première optique du marketing  mix, à savoir l’optique\textit{ Produit}. Cette optique repose sur l’hypothèse que le consommateur préfère le produit offrant la meilleure qualité pour le prix le plus bas. Par conséquent , les entreprises ont recours aux “leaders d’opinion” qui servent de garantie de la bonne qualité du produit envers le grand public de consommateurs qui les aiment et les respectent. \\
+Penser que le marketing d’influence est un concept moderne serait inexacte. En effet , cette pratique  a débuté au 19e siècle avec “Nancy Green” qui servait d’image de marque pour le mélange de crêpes américain “Aunt Jemima”.\\Aujourd’hui , à l’essor des réseaux sociaux le marketing d’influence a pris une ampleur énorme.Les spécialistes de marketing ont compris que le consommateur cherche de plus en plus l’authenticité et la transparence, choses que n’offrent plus  les grandes célébrités et les superstars dans leurs châteaux .En revanche, ces  figures publiques mais  “ordinaires”  qui partagent tout détail de leur vie créent un sentiment de confiance et de proximité chez le consommateur.\\
+L’ampleur de cette tendance est tangible à travers les grands nombres que fait le marketing d’influence de nos jours. Par exemple, en 2021 la taille de son marché pesait \textbf{13.8 milliards de dollars} , soit \textbf{20} fois plus qu’en 2015 et devrait atteindre\textbf{ 37 612,3 millions de dollars} d'ici 2028. Il n’est  donc pas surprenant que près de \textbf{93\%} des responsables de marketing adoptent cette méthode.\\
+Cependant ,ce  qui est vraiment étonnant c’est que malgré sa croissance exponentielle, les méthodes du marketing d’influence semblent stagnantes et inefficaces. \cite{5,6,7}
+
+\subsection{Problématique}
+La procédure actuelle de découverte d'influenceurs est manuelle, fastidieuse et sujette à des erreurs humaines. En effet, les marketeurs doivent consacrer de nombreuses heures à analyser d'énormes quantités de données, souvent pleines d'erreurs, de valeurs manquantes, de doublons, d'incohérences et de bruit insignifiant pour l'analyse. De plus, la  quantité écrasante d'informations à analyser et interpréter , le plus souvent des millions et des millions d'entrées, dépasse les capacités humaines.\\
+L'adoption de cette méthode  impacte donc négativement la productivité de l'équipe marketing, l'efficacité des campagnes de marketing d'influence et l'évaluation des performances ultérieures.\\
+D'ailleurs,les statistiques le confirment : \textbf{67 \%} des entreprises qui adoptent ce type de marketing admettent rencontrer des difficultés dans la sélection du bon influenceur, faisant de ce problème le deuxième plus important après la mesure et l'amélioration du retour sur investissement.\cite{1} \\
+La figure ci dessous souligne les principaux problèmes rencontrés dans le marketing d'influence
+
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{influencer_problems.png}
+    \caption{Principaux problèmes du marketing influenceurs \cite{1}}
+    \label{fig:influencer-problems}
+\end{figure}
+\subsection{Solution proposée}
+Pour répondre à ces défis, la solution proposée consiste à développer un outil ou une plateforme technologique qui facilite la recherche et la sélection d'influenceurs. Cette solution automatisée permettra de minimiser les erreurs humaines, d'améliorer la productivité des marketeurs et d'élargir la base de données d'influenceurs disponibles. En intégrant des critères spécifiques et en simplifiant le processus de recherche, cette solution permettra à l'équipe de marketing de trouver plus rapidement et plus efficacement les influenceurs pertinents pour chaque campagne.
+
+\section{Etat de l'art}
+Dans cette section, nous allons étudier  les différents concepts et techniques de Machine Learning qui pourront nous aider à résoudre notre problématique. \\
+\subsection{Traitement du Langage Naturel}
+Le Traitement du Langage Naturel (Natural Langage Processing en anglais), souvent abrégé en NLP, est un domaine qui se concentre sur la compréhension, l'interprétation et la manipulation du langage humain par les ordinateurs.\\
+Bien que le NLP soit considéré comme une branche de l'intelligence artificielle, il est multidisciplinaire. En effet, il fait souvent appel à la linguistique humaine, aux statistiques et à l'informatique.\\
+L'histoire de ce domaine remonte aux années 1940, lorsque Alan Turing a introduit le test connu aujourd'hui sous le nom de "Test De Turing" comme critère d'intelligence d'une machine. Ce test incluait une étape qui nécessitait l'interprétation et la génération de langage naturel
+\cite{8,9}
+\subsection{Types d'apprentissage automatique}
+L'apprentissage automatique est le processus selon lequel les machines s'entraînent  rien qu'en analysant  des données et évoluent dans le temps sans être dirigées par des instructions pré-programmées. Dans cette direction, on distingue deux approches d'apprentissage: l'apprentissage supervisé et l'apprentissage non supervisé.
+\subsubsection{Apprentissage supervisé}
+Dans cette approche, la machine est entraînée sur des données dites \textit{"étiquetées"}.En d'autres mots , on annote les données avec les réponses qu'on souhaite récupérer en appliquant le modèle sur une nouvelle donnée similaire.\cite{12} \\
+Plusieurs cas d'utilisations sont connus pour ce type d'apprentissage notamment les problèmes de régression et les problèmes de classification d'images ou de textes.L'apprentissage supervisé est célèbre pour avoir détecté des cellules cancéreuses de sein qui avaient échappées aux médecins. \cite{11} \\
+Ci dessous une figure qui explique le fonctionnement de l'apprentissage automatique  supervisé.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{what-is-supervised-learning.png}
+    \caption{Fonctionnement de l'apprentissage automatique supervisé \cite{12}}
+    \label{fig:supervised-learning}
+\end{figure}
+
+\subsubsection{Apprentissage non supervisé}
+Dans cette approche , la machine s'entraîne sur des données brutes, non annotées.Elle doit les analyser  et déduire ses propres règles pour prendre des décisions et ce en cherchant des motifs que suivent les données , des similitudes et des différences.\\
+Cette approche est souvent utilisée pour des problèmes de catégorisation et de regroupement (clustering en anglais), pour le problème mathématique  de réduction de dimensionalité et pour la découverte d'anomalies.\\
+Ci dessous une figure qui explique le fonctionnement de l'apprentissage automatique  non supervisé.  \clearpage
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Unsupervised-Learning-Clustering.png}
+    \caption{Fonctionnement de l'apprentissage automatique non supervisé \cite{12}}
+    \label{fig:unsupervised-learning}
+\end{figure}
+
+
+\subsection{Machine Learning au service du topic modeling}
+Topic Modeling est un problème de catégorisation qui rentre dans la catégorie du Traitement de Langage Naturel\textbf{ NLP} et est considérée comme une technique d'aprentissage\textbf{ non supervisé}.\\
+Topic modeling analyse des données non étiquetées pour construire des groupes à thèmes\textit{("topics")} communs.Pour identifier ces thèmes, il exploite la structure sémantique du texte.\\
+Un usecase très courant de Topic Modeling est la détction de spam dans la boîte mail.\\
+Il existe plusieurs algorithmes de Topic Modeling,le plus connu et le plus ancien  étant l'Allocation De Dirichlet Latente, abrégée LDA.Cet algorithme suppose qu'un groupe est composé de plusieurs thèmes et que chaque mot du groupe pointe vers un thème spécifique.On cite aussi l'algorithme Non-Negative Matrix Factorization (NMF) qui approche le problème de point de vue matricielle. On trouve aussi plusieurs algorithmes basés sur le modèle \textit{BERT} de \textit{Google} tels que BERTopic ,SciBERT,ALBERT et bien d'autres.Les algorithmes BERT se caractérisent par leur capacité à comprendre le contexte bidirectionnel d'un mot dans une phrase et à détecter les subtilités linguistiques très efficacement. \\
+Ci dessous est une figure qui schématise le fonctionnement général des algorithmes de topic modeling
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{topic-modeling-schema.png}
+    \caption{Fonctionnement des algorithmes de Topic Modeling}
+    \label{fig:topic-modeling}
+\end{figure}
+\cite{2}
+
+\section{Préparation des données}
+La qualité d’un modèle Machine Learning dépend énormément de la qualité et la quantité des données qu’on lui fournit. C’est pour cette raison que nous avons consacré beaucoup de temps à cette partie pour collecter le maximum de données et les traiter de manière à faciliter la tâche de notre modèle.
+\subsection{Collecte des données}
+Pour la collecte des données depuis Instagram , nous avons utilisé les technologies du web scraping. Ce processus nous a permis de collecter des informations telles que les publications, les commentaires, la biographie et l’activité des influenceurs sur Instagram. Nous avons d’abord écrit un script Python pour réaliser le scrapping, mais cette méthode s’est avérée assez inefficace pour de grands volumes de données en raison des restrictions mises en place par Meta. Nous avons en partie réussi à les “contourner” notamment en divisant la tâche entre nous, en changeant les agents web, en ajoutant des petits timeout entre les requêtes, mais en vu du nombre énorme de données que nous voulions récolter, nous avons du changer d’approche et utiliser des sites qui font le scrapping pour nous (apify), ce qui s’est avéré beaucoup plus efficace. Notre script pour le scrapping nous sera cependant utile pour la suite pour scrapper les données d'un influenceur en temps réel. Ensuite, nous utiliserons notre modèle pour déterminer la catégorie à laquelle cet influenceur appartient.
+\subsection{Description des données}
+Comme on s’y attendait pour un immense réseau social comme Instagram, les données étaient assez verboses, avec beaucoup d’attributs inutiles pour notre projet. Ces attributs étaient aussi variables d’un post (publication) à l’autre. Dans ce qui suit est un exemple des données d’une publication:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{example_post.png}
+    \caption{Exemple des données d'un post}
+\end{figure}
+
+
+Comme nos données étaient à la base stockées dans un fichier JSON, et au vu de leur important nombre et du manque d’une structure claire, nous avons décidé d’utiliser une base de données NoSQL orientée documents. Nous avons choisi MongoDB pour sa flexibilité et sa simplicité. Nous voulions rapidement tester sur ces données et voir comment les changements impactent notre modèle dans une approche “Move fast and break things”, et MongoDB nous a permis cela notamment grâce à ses pipelines d'aggrégations.
+Une première étape consiste à éliminer tous les attributs inutiles. Nous ne souhaitions garder que l’id du post, l’id de l’utilisateur (pour ensuite réaliser une jointure) et le contenu du poste. Un simple \$project comme montré ci-dessous nous a permis de réaliser cela.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{project_pipe.png}
+    \caption{1\textsuperscript{ère} étape de préparation}
+    \label{fig:prep-step1}
+\end{figure}
+\clearpage
+Il fallait ensuite réaliser la jointure pour associer à chaque utilisateur tous ses posts. Cela est possible grâce au \$group.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{group_pipe.png}
+    \caption{2\textsuperscript{ème} étape de préparation}
+    \label{fig:prep-step2}
+\end{figure}
+La dernière étape dans MongoDB consiste a concaténer tous les posts d’un utilisateur pour avoir un seul string “posts” qui contient tout ce que cet utilisateur a écrit (au lieu d’un tableau de posts).
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{pipe_set.png}
+    \caption{3\textsuperscript{ème} étape de préparation}
+    \label{fig:prep-step3}
+\end{figure} \\
+Pour résumer, voici notre pipeline en entier.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{all_pipes.png}
+    \caption{Totalité des pipes}
+    \label{fig:all-pipes}
+\end{figure}
+\subsection{Nettoyage des données}
+Pour assurer une meilleure qualité des données collectées, nous avons passé par plusieurs étapes de nettoyage de données qu’on détaillera dans cette section.
+\subsubsection{Traduction}
+Dans Instagram il n'y a pas d’exigence sur la langue utilisée pour les publications , biographie ou les commentaires. Dans ce cas, la traduction est une étape nécessaire pour l’homogénéité des données. Pour cela on a choisi d' effectuer une traduction des données textuelles qu’on va utiliser pour l'entraînement du modèle en anglais .
+Pour cela nous avons choisi d’utiliser l’API de traduction \textbf{Google Translate}.
+\subsubsection{Lemmatisation}
+La lemmatisation d’un texte est de mettre les mots sous leur forme canonique. Par exemple, la lemmatisation d’un verbe est son infinitif , pour un nom c’est le masculin singulier. Cette étape est cruciale pour améliorer la précision de l’analyse de texte et réduire la taille des données.
+Pour cela nous avons utilisé la bibliothèque \textbf{Spacy} de Python.
+\subsubsection{Elimination des stopwords}
+Les stop words ou mots d'arrêt sont largement utilisés dans la langue utilisée ( and, then, a, is …..) mais n’ont pas de valeur dans le sens des données textuelles traitées et ils ralentissent le travail vu leur fréquence importante.
+Pour éliminer les mots d'arrêt on a choisi d’utiliser la bibliothèque \textbf{NLTK} qui fournit une liste des mots d'arrêts dans diverses langues. On ne s'intéresse qu'à la langue anglaise et on l’utilise pour supprimer les stopwords de la biographie , publications et commentaires.
+\subsubsection{Elimination des emojis}
+Les emojis sont fortement utilisés dans les réseaux sociaux et particulièrement Instagram et bien qu'ils soient utilisés dans certains modèles l’analyse des sentiments, ils n'ont pas une valeur importante dans la catégorisation des données.
+Pour l'élimination des emojis, on a choisi d’utiliser le paquet\textbf{ unidecode} de python qui permet de supprimer les tokens avec un format non textuel, y inclus les emojis.
+\subsubsection{Exploration et analyse des données}
+Le Word Cloud est une visualisation graphique de la fréquence des mots dans un texte donné.Plus la taille de police avec laquelle le mot est écrit est grande, plus sa fréquence est importante dans le texte.
+Pour examiner quels sont les thèmes récurrents dans l'ensemble de nos données , nous avons généré  le Word Cloud relatif aux bios de \textit{tous} les influenceurs.\\(\textit{figure 10}  )
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{wordcloud.png}
+    \caption{Word Cloud des bios de tous les influenceurs}
+    \label{fig:wordcloud-all}
+\end{figure}
+\\Nous  pouvons déjà identifier quelques thèmes intéressants  à travers les mots du Word Cloud. \\
+Par exemple,"fashion","model","beauty" et "designer" refèrent  au thème\textit{ "beauté \&style"}. De l'autre côté "food","foodie" et "recipe" réfèrent au thème\textit{ "nourriture"}\\
+Nous avons aussi généré le Word Cloud à partir du bio d'un influenceur particulier\textit{ (figure 11)}\clearpage
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{image.png}
+    \caption{Word Cloud d'un influenceur particulier}
+    \label{fig:wordcloud-influencer}
+\end{figure}
+D'après le Word Cloud de cet influenceur , nous pouvons deviner qu'il s'agit d'une entreprise de management pour les artistes. Nous pouvons donc le classer dans la catégorie "\textit{artistes}" aussi bien que la catégorie "\textit{buisness}"
+\section{Modélisation}
+\subsection{Modélisation avec LDA}
+\subsubsection{Choix du modèle }
+Latent Dirichlet Allocation  est un modèle probabiliste qui sert à extraire des sujets (“topics”) à partir d’un ensemble de données textuelles.  Le nom du modèle est composé de deux parties:
+\begin{enumerate}
+    \item “Latent” qui veut dire “caché” en anglais
+    \item Dirichlet Allocation : relatif aux distributions Dirichlet .C’est une famille de distributions de probabilités multivariées ,continues et paramétrées. Il s’agit d’une généralisation multivariée de la distribution Beta.
+\end{enumerate}
+LDA utilise les distributions Dirichlet pour modéliser la distribution des sujets dans chaque document et la distribution des différents mots dans un sujet.Ainsi,il permet de “dévoiler” le sujet qui était “caché” dans le texte.
+\subsubsection{Application du modèle}
+Pour pouvoir appliquer  LDA , nous avons commencé par modéliser la section “bio” du profil de l’utilisateur ainsi que la  section  “caption” relative  à ses  publications par un vecteur “Bag Of Words” (BOW) et ce avec la bibliothèque \textbf{Gensim}. Nous avons aussi généré les “biagrams” et “triagrams” qui sont,respectivement,une combinaison de  deux et trois mots qui apparaissent fréquemment ensemble dans le texte des données.On a aussi appliqué le modèle \textbf{Tf-Idf} aux données afin de filtrer les mots trop fréquents dans le document, question de garantir qu’il s’agit vraiment d’une catégorie et non pas d’un bruit maltraité dès la phase de nettoyage.
+\subsubsection{Construction du modèle}
+Nous avons utilisé le modèle LDA fourni par  la bibliothèque Gensim qui  nécessite la configuration d’un nombre de paramètres.
+Nous avons commencé par les fixer à travers du tâtonnement  en nous  basant sur les propriétés générales de nos données .Par la suite, nous les avons incrémentalement  affinés suite à l’évaluation des résultats empiriques.
+
+Les  paramètres  en question sont principalement : \cite{4}
+\begin{enumerate}
+\item $num\_topics(K)$  : Le plus souvent , ce paramètre est le plus important, il représente le nombre de “clusters” sur lequel nos données seront divisées. Dans notre cas d’utilisation , un cluster représente une catégorie.
+\item $alpha$ : Spécifie les attentes initiales concernant la rareté ou la diversité des sujets dans les documents. Une valeur élevée d'alpha suppose que les documents contiennent une variété de sujets, tandis qu'une valeur faible suppose que les documents sont plus dispersés et ne contiennent que quelques sujets.
+
+\item $eta(ou beta)$:  Représente la densité sujet-mot . C’est un indicateur sur  la rareté des mots composant un cluster. Une valeur de beta élevée indique que les clusters sont  plutôt composés de plusieurs mots dont la probabilité d’apparition est élevée  que de quelques mots spécifiques avec une  probabilité d’apparition faible .
+\item $random\_state$: LDA étant un modèle probabiliste non déterministe, l’entraîner avec les mêmes paramètres sur un même corpus donnera probablement  des résultats différents à chaque entraînement. En spécifiant un $random\_state$, ou un “seed”, nous pourrons atténuer cette variation et assurer conséquemment  une meilleure reproductibilité.
+\item $chunksize$: Les données d’entraînement sont divisées en plusieurs parties qui seront traitées une par une.Le choix du chunksize dépend  fortement de la taille des données .Il  n’affecte pas la précision du modèle mais plutôt  la rapidité du traitement et l’utilisation de mémoire.
+\item $passes$:  ce paramètre indique le nombre de fois que le modèle itére sur l’ensemble des données. Vu la taille importante  des données dont nous disposons,il faudrait choisir un nombre de passes  élevé pour permettre aux estimations de converger vers les observations.
+\end{enumerate}
+
+
+\textbf{Choix initial des paramètres:}
+\begin{enumerate}
+\item $num\_topics$:  Nous l’avons arbitrairement fixé à 10.
+ \item $alpha$ : Nous avons choisi une valeur relativement élevée (alpha = 2) en raison de l'observation que les catégories sur Instagram se chevauchent assez souvent. Par exemple, un compte d'un sportif qui publie fréquemment des recettes de plats sains peut intersecter un compte d'un chef qui partage des recettes de gâteaux gourmands.
+\item $eta$:  Nous avons remarqué que nos données   sont majoritairement composées des mots du vocabulaire qui se répètent souvent . Nous avons donc opté pour une valeur élevée de Beta=3.
+\item $chunksize$: La taille de nos données d’entraînement étant assez grande (38 000 documents) , nous avons opté pour une valeur élevée du  chunksize =1000 pour accélérer le traitement.
+\item $passes$: nous avons commencé par choisir arbitrairement une valeur = 10.
+\end{enumerate}
+
+\subsubsection{Evaluation du modèle}
+Pour faire le  diagnostic des performances du modèle , on s'appuie souvent sur des indicateurs analytiques et mathématiques qui nous guideront à ajuster les hyperparamètres afin d’obtenir de meilleurs résultats.L’un de ces  principaux indicateurs est  le \textit{score de cohérence}. Cependant, il ne faut pas négliger l'intuition et la validation humaines car elles surpassent encore celles de la machine, c’est  pourquoi nous nous baserons en plus sur l’analyse graphique. \clearpage
+\textbf{a. Evaluation graphique } \\ \\
+L’outil “pyLDAvis” de Gensim permet de tracer une représentation graphique sous forme de widget html interactif. Ce graphique représente par des cercles de différentes tailles   les “topics” déterminés par le modèle. Un cercle plus grand indique que le topic correspondant est plus riche en termes .La distance entre les cercles souligne à quel point les sujets se ressemblent.
+A chaque cercle on associe les  principaux mots du topic correspondant et leur fréquence d’apparition aussi bien dans le sujet en question que dans l’ensemble des documents.
+Un “bon” modèle montrera des cercles de tailles comparables et  suffisamment éloignés. Par exemple , deux cercles dont l’intersection est large indiquent que les deux sujets  devraient être fusionnés en un seul sujet, un cercle qui est trop grand par rapport aux autres indique que le sujet est trop dominant et devrait être réparti en petits sujets ,beaucoup de petits cercles devraient être fusionnés en un seul sujet.
+Avec la paramétrisation  initiale de notre modèle , on obtient la figure suivante:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{latexImage_690a12e880ae1114eb8ada767f45fb17.png}
+    \caption{Représentation graphique de la distribution des sujets par pyLDAvis}
+    \label{fig:pyldavis}
+\end{figure}
+Nous pouvons  visualiser dans la liste à droite les termes qui y apparaissent fréquemment.
+Nous remarquons   que les cercles sont divisés en deux grandes régions , une à droite et une à gauche. Dans les deux régions individuelles, les cercles semblent relativement proches ,indiquant des thèmes similaires .Nous remarquons aussi que dans chacune des régions , il existe un cercle de taille remarquablement plus grande que les autres ,à savoir le cercle 1 pour la région de gauche et les cercles 2 et 3 pour la région de droite.Si nous flottons  sur les différents cercles d’une même région , nous remarquons qu’ils sont composés des mêmes termes dans des ordres différents ou de termes très similaires.Nous confirmons par ce test que les topics convergent vers un seul  thème  pour chaque région.
+
+En vue de l’analyse de ce graphe , nous  pourrions  réduire le nombre de sujets à trois ou  même deux .\\ \\
+\textbf{b. Évaluation analytique }\\ \\
+Le score de cohérence $\in$ [0,1] et  indique à quel point les sujets sont  cohérents sémantiquement et donc interprétables. Plus le score s’approche de 1 , plus les sujets sont cohérents.
+Plusieurs méthodes sont disponibles pour évaluer le score de cohérence, la plus répandue étant la méthode  $c\_v$ .\\ Cette méthode est basée sur le calcul de la probabilité de conccurrence de deux mots dans un document  (\textit{score NPMI}) et \textit{la similarité cosinus}. \\
+En effet, pour chaque mot  $i$  du document , on calcule son score NPMI par rapport à tout autre mot  $j$ ($j\neq i$) du  même document et on crée un vecteur des scores NPMI $V_i$.\\
+Par la suite, on évalue la similarité des différents vecteurs associés aux différents termes avec la \textit{similarité cosinus} qui mesure le cosinus de l’angle que font deux vecteurs $V_i$ et  $V_j$ .\\
+Pour calculer  le score de cohérence de notre modèle , nous utilisons le modèle \textbf{CoherenceModel} de Gensim avec la politique $c\_v$. \\
+Avec la paramétrisation initiale , le score de cohérence mesure\textbf{ 0.273}. Ce score est trop faible , indiquant que les sujets de notre modèle sont  peu cohérents, donc difficiles à interpréter.
+
+\subsubsection{Ajustement du modèle}
+En réduisant le nombre de sujets à \textbf{3}  nous atteignons  un score de cohérence à peine  supérieur égal à\textbf{ 0.275}. Si nous changeons en plus  les paramètres \textit{alpha} et \textit{eta}  à \textbf{“auto”} et le paramètre \textit{passes} à \textbf{5} nous  atteignons  un score de cohérence un peu plus élevé  de \textbf{0.277}.
+Nous continuons à expérimenter avec les différents paramètres. Après quelques itérations , nous déduisons que la meilleure combinaison des hyperparamètres est la suivante :
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+     \hline
+        alpha & eta & $num\_topics$ & passes &\textbf{score de cohérence} \\ \hline
+         auto& auto & 3 & 5 & \textbf{2.77}\\
+        \hline
+    \end{tabular}
+    \caption{Analyse du score de cohérence}
+    \label{tab:coherence-score}
+\end{table}
+Ce score est encore trop petit même après les ajustements. \\
+Nous pouvons  donc conclure que LDA n’est pas le modèle approprié pour notre cas d’utilisation. Ceci peut être dû au fait que nos documents, basés sur des bios et des captions, sont trop courts et trop hétérogènes.\\
+Les textes d’ Instagram sont le plus souvent écrits en langage familier qui présente une complexité sémantique importante: le sens d’un mot peut différer largement d’un contexte à un autre , surtout dans les expressions idiomatiques. \\
+Par exemple,  le mot \textit{“plomb”} tout seul réfère à l'élément chimique ,  par contre l’expression\textit{“péter un plomb”}, fréquemment utilisée dans le registre familier,  veut dire  \textit{“perdre son calme”}.\\
+LDA a été conçu pour des textes longs et n’a pas la maturité nécessaire pour capturer les nuances sémantiques des textes à structure linguistique complexe.
+C’est justement pourquoi nous avons pensé à essayer un autre modèle  plus robuste au bruit et plus sensible aux nuances de langue.
+\subsection{Modélisation avec BERTopic}
+\subsection{Choix du modèle}
+BERTopic est une technique de topic-modeling qui exploite les embedding BERT et le c-TF-IDF pour créer des clusters denses (nombre limité de termes significatifs par topic ) et facilement interprétables tout en conservant les termes importants dans la description des topics. \\
+Un modèle BERTopic passe par cinq étapes principales: \cite{3}
+\begin{enumerate}
+    \item Transformation des documents en représentations vectorielles  numériques appelée text-embedding en anglais. Ceci est généralement  réalisé  par le  biais d’un modèle Transformer   comme “all-MiniLM-L6-v2” de Microsoft, réputé pour la qualité de ses transformations et ses performances élevées.Le pré-entraînement  des modèles Transformer sur des quantités énormes de données textuelles leur permet de   capturer les nuances sémantiques et les significations subtiles d’un mot dans un contexte spécifique d’une phrase.
+    \item Réduction de la dimensionnalité des représentations vectorielles, généralement avec “UAMP”.
+    \item Clustering des représentations vectorielles ,généralement avec “HDBSCAN”. Cet algorithme est très efficace grâce à sa capacité de gérer les données bruyantes(“outliers” en anglais) ce qui nous évite un prétraitement complexe des données comme c'est le cas avec d’autres algorithmes de la même famille tels que K-means.
+    \item Tokenisation, c'est-à-dire la décomposition du texte en mots individuels ou groupes de mots qui apparaissent fréquemment ensemble et forment un sens collectif (n-grams) . BERTopic utilise le vectorizer CountVectorizer par défaut mais permet de personnaliser  son comportement en configurant ses paramètres.
+    \item Représentation des topics avec c-TF-IDF. Il s’agit d’une version modifiée de l’algorithme de TF-IDF classique : au lieu d’étudier l’importance d’un mot pour un document , on le fait pour un cluster. De cette façon, c-TF-IDF garantit que les différents clusters soient distincts l’un de l’autre et qu’un cluster soit le plus cohérent possible  en interne.
+\end{enumerate}
+Dans ce qui suit une figure qui schématise les différentes couches de BERTpoic \clearpage
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{bertt_stack_2.png}
+     \caption{Les cinq couches de BERTopic}
+    \label{fig:bertopic-layers}
+\end{figure}
+\subsection{Application du modèle}
+BERTopic ne nécessite aucune vectorisation  ni tokenisation préalable  des données.Le prétraitement des données n’est aussi  pas nécessaire mais quand même conseillé . En fait, les différentes couches de BERTopic prennent soin de ces points en toute transparence.
+\subsubsection{Construction du modèle }
+La construction du modèle BERTopic est très simple, il suffit d’instancier la classe BERTopic en spécifiant les modèles à utiliser pour chaque couche. Par exemple le modèle  de représentation vectorielle, le tokenizer ,l’algorithme de clustering...sinon ,les modèles par défaut seront choisis. Il faut par la suite entraîner le modèle sur un ensemble de données représenté  par une liste de chaînes de caractères.
+\subsubsection{Evaluation du modèle}
+\textbf{a. Evaluation Graphique}\\ \\
+BERTopic propose deux graphiques différents pour la visualisation des topics générés: un diagramme des distances inter-topic et un diagramme en bande. \\\\
+\textbf{Diagramme des distances inter-topic: } \\\\
+Ce diagramme ressemble beaucoup à celui fourni par “pyLDAvis” dans la section précedente. Il consiste en un widget html interactif contenant des cercles de tailles différentes. Chaque cercle représente un topic. Plus le cercle est grand , plus le topic correspondant est riche en termes.Plus les cercles sont rapprochés , plus ils se rassemblent dans les thèmes abordés.En flottant sur un cercle , on peut visualiser les termes caractéristiques du topic. Notre première version du modèle a produit le diagramme des distances inter-topic suivant
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{untitled.png}
+    \caption{Diagramme des distances inter-topic}
+    \label{fig:inter-topic-distance}
+\end{figure} \clearpage
+La barre en bas nous indique combien de topics ont été générés et nous permet de s’y déplacer. D’après ce graphique , BERTopic a généré 210 topics répartis en quatre régions différentes. Nous remarquons que plusieurs cercles se superposent , indiquant une ressemblance thématique élevée. \\\\
+\textbf{Diagramme en bande}\\\\
+Le diagramme en bande représente les huit topics les plus dominants parmi ceux générés,c'est-à -dire ceux les plus riches en termes. Il représente en plus pour chaque topic les cinq premier  mots qui le caractérisent ainsi que leur fréquence dans le topic même.
+La première version de notre modèle a reproduit le diagramme en bande suivant \\
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{barchart1.png}
+    \caption{1\textsuperscript{ère} version du diagramme en bande}
+    \label{fig:barchart-v1}
+\end{figure}
+\\A  vue d'œil , on remarque que les topics générés sont assez cohérents en interne. En effet , il est très facile de deviner le thème abordé  rien qu’avec les cinq mots affichés. Par exemple , le topic 0 a clairement à faire avec l’\textit{Italie} , le topic 3 avec le \textit{sport} , le topic 2 avec la \textit{nourriture}.\\
+Cependant , on peut juger que certains topics ne nous seront pas très utiles individuellement pour  la catégorisation des influenceurs. Par exemple , les topics 0,4 et 5 indiquent probablement la nationalité de l’influenceur , chose à laquelle   nous ne sommes  pas  intéressés dans notre usecase spécifique. Il est aussi probable qu’ils indiquent des pays que les influenceurs ont visités ,surtout qu’il s’agit de destinations touristiques populaires. Ceci incite  à placer ces influenceurs dans la catégorie “voyage” ,par exemple. Cette deuxième interprétation nous est plus utile que la première. D’ailleurs en repérant ces topics sur le graphique des distances inter-topic on voit qu’ils sont presque superposés , indiquant que ces termes ont été justement  utilisés dans des thèmes proches.\\
+Nous pouvons  donc améliorer notre modèle en fusionnant ces trois topics (et tout autre topic en relation avec des pays ou des villes. Nous les  repérons à partir  du graphique des distances inter-topic). \\ \\
+\textbf{b. Evaluation analytique}
+Le calcul avec l’algorithme $c\_v$ donne un score de cohérence de \textbf{0.33}. Ce score est relativement faible.
+\subsubsection{Ajustement du modèle}
+En fusionnant les topics en relation avec les pays et les villes, on obtient le diagramme en bande suivant\\
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{barchart2.png}
+    \caption{2\textsuperscript{ème} version du diagramme en bande \cite{3}}
+    \label{fig:barchart-v2}
+\end{figure}
+\clearpage
+Désormais ,le topic 0 pointe clairement vers des destinations de voyage. \\  De la même manière ,nous pouvons facilement identifier le thème des autres topics. Par exemple le topic 1 parle de\textit{ mamans influenceuses}, ce qui peut être une catégorie utile à viser pour plusieurs business, le topic 2 parle du \textit{sport}, le topic 3 de la \textit{nourriture}, le topic 4 de l’\textit{art de photographie}, le topic 6 de \textit{youtubers}  et le topic 7 de \textit{réseaux sociaux}. Cependant, il est moins facile de pointer précisément le thème abordé par le topic 5. Nous notons aussi que les topics 7 et 6 sont sémantiquement proches. Nous pouvons demander au modèle de réduire le nombre de topics générés à 100  pour avoir des topics plus généraux. \\
+Essayons aussi d’améliorer le score de cohérence en spécifiant au tokenizer d’utiliser les bigrams et trigrams. \\
+Nous  obtenons  alors le diagramme en bande suivant \\
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{barchart_v3.png}
+    \caption{3\textsuperscript{ème} version du diagramme en bande}
+    \label{fig:barchart-v3}
+\end{figure}
+\\Nous remarquons plusieurs changements. En premier lieu , la condensation des topics a fait apparaître deux nouveaux topics dans la liste de ceux  les plus peuplés à savoir le topic 4 , portant clairement sur le thème “\textit{beauté}” et le topic 5 abordant le thème “\textit{entreprenariat}”. On remarque aussi que le topic 6 s’est généralisé du thème “\textit{youtuber}” vers le thème “\textit{streamer}”,chose que nous jugeons plus utile pour un agent de marketing.Cependant, il n’est toujours pas clair de quoi parle le topic 7 (anciennement topic 5).
+Nous notons également  que le score de cohérence atteint \textbf{0.37}
+\subsection{Comparaison des modèles}
+Bien que l’évaluation analytique ne différencie pas énormément les deux modèles , l’évaluation graphique et l’interprétation humaine montrent que les résultats obtenus par BERTopic sont nettement meilleurs que ceux de LDA. En effet, BERTopic  a réussi à générer  près de 100 topics qui étaient dans la majorité, cohérents dans l’ensemble, différenciés les uns des autres et très faciles à étiqueter.De l’autre  coté  , LDA n’a généré que trois topics qui étaient trop incohérents , très comparables les uns aux autres et difficiles à interpréter.\\
+Ci dessous est un tableau comparatif qui résume l'évaluation des deux modèles
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+        Modèle & LDA &BERTopic \\
+        \hline
+        Score de cohérence & 0.27 & \textbf{0.37}\\
+        \hline
+         Détérmination des catégories& difficile & \textbf{extrêmement facile}\\
+         \hline
+         Temps d’exécution sur cpu& \textbf{moins d’une minute} &5 minutes \\
+         \hline
+         Temps d’exécution sur gpu \tablefootnote{NVIDIA GEFORCE GTX avec PyTorch} &\textbf{quelques secondes}&30 secondes \\
+    \hline
+    \end{tabular}
+    \caption{Tableau comparatif de LDA et BERTopic}
+    \label{tab:comparison}
+\end{table}
+\clearpage
+\section{Flask API}
+Pour permettre la communication avec notre modèle, nous avons développé une API en utilisant Flask. Flask a été notre choix naturel en raison de sa simplicité et de sa facilité d'utilisation, ce qui en fait une solution idéale pour des projets nécessitant des développements rapides et efficaces. Flask est un micro-framework en Python qui permet de créer des applications web légères tout en offrant une grande flexibilité et extensibilité grâce à son écosystème de plugins.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\linewidth]{1200px-Flask_logo.svg.png}
+\caption{API Flask}
+\label{fig:flask_api}
+\end{figure}
+
+Flask fournit un environnement minimaliste qui permet aux développeurs de s'occuper uniquement de la logique de l'application, tout en laissant la gestion des détails bas niveau (comme les requêtes HTTP) à la bibliothèque. Cela nous a permis de nous concentrer sur l'implémentation de notre logique métier sans être encombrés par des configurations complexes.
+
+Nous avons mis en place plusieurs endpoints dans notre API. Ces endpoints permettent, à partir du nom d’un influenceur, de scrapper son profil sur les réseaux sociaux, d’obtenir ses données et de les envoyer à notre modèle de machine learning. Plus précisément, notre processus est le suivant :
+\begin{itemize}
+    \item \textbf{Scraping des données}: Nous utilisons un module de scraping pour extraire les données publiques du profil de l'influenceur. Ces données incluent des informations telles que la biographie, le nombre d'abonnés, et les catégories de contenu.
+    \item \textbf{Prétraitement des données}: Les données brutes sont ensuite nettoyées et prétraitées pour éliminer les informations inutiles et normaliser le texte.
+    \item \textbf{Analyse par le modèle}: Les données prétraitées sont envoyées à notre modèle de machine learning qui analyse le contenu et prédit la catégorie de l’influenceur.
+\end{itemize}
+Cette approche automatisée nous permet de gérer et d'analyser de grandes quantités de données de manière efficace et d'obtenir des résultats en temps réel.
+\clearpage
+
+\section{Déploiement}
+La dernière étape du projet consiste à déployer notre modèle. Pour cela, nous avons opté pour l'utilisation de conteneurs Docker, qui offrent une solution portable et consistante pour déployer des applications dans différents environnements.
+Docker permet de créer des images contenant toutes les dépendances nécessaires, garantissant ainsi que notre application fonctionne de la même manière sur les machines de développement et de production.
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.5\linewidth]{docker.png}
+        \caption{Docker}
+        \label{fig:docker}
+    \end{figure}
+\\Le processus de déploiement avec Docker inclut les étapes suivantes :
+\begin{itemize}
+    \item \textbf{Création de l'image Docker}: Nous avons créé un Dockerfile qui spécifie l'environnement d'exécution, y compris la version de Python, les dépendances Python à installer, et les configurations nécessaires pour notre application Flask.
+    \item \textbf{Construction et test de l'image}: Une fois le Dockerfile créé, nous construisons l'image Docker et la testons localement pour nous assurer que tout fonctionne correctement.
+    \item \textbf{Déploiement sur le cloud}: Nous utilisons un service de cloud computing, comme Microsoft Azure, pour héberger notre application. Azure offre des services de conteneurisation et de gestion des applications qui simplifient le déploiement et la gestion de notre application en production.
+\end{itemize}
+
+Nous avons également intégré Gunicorn comme serveur WSGI (Web Server Gateway Interface) pour exécuter notre application Flask. Gunicorn est un serveur WSGI Python pré-fork worker model, ce qui signifie qu'il est capable de gérer plusieurs requêtes simultanément en créant plusieurs processus de travail. Cette architecture améliore significativement les performances de notre API, assurant une réponse rapide même sous une charge élevée.
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{full_process.png}
+    \caption{Architecture: Intégration de Gunicorn avec Flask et Docker}
+    \label{fig:Intégration de Gunicorn avec Flask et Docker}
+\end{figure}
+
+En utilisant Gunicorn avec Docker, nous pouvons :
+\begin{itemize}
+    \item \textbf{Améliorer la performance}: Gunicorn est capable de gérer un grand nombre de requêtes simultanées, ce qui est crucial pour maintenir une API réactive.
+    \item \textbf{Assurer la scalabilité}: Docker facilite la scalabilité horizontale en permettant de déployer plusieurs instances de notre application facilement.
+    \item \textbf{Gérer la sécurité et la maintenance}: Déployer sur une plateforme cloud comme Azure assure que notre application bénéficie des dernières mises à jour de sécurité et d'une infrastructure fiable.
+\end{itemize}
+
+Ce déploiement sur le cloud garantit également que notre modèle est accessible en tout temps et de manière sécurisée par les utilisateurs finaux, avec la possibilité de s'adapter à une augmentation de la demande sans compromettre les performances.
+\clearpage
+
+\section{Conclusion Générale}
+Dans le cadre du projet professionnel personnel, nous avons conçu et implémenté une solution Machine Learning  qui permet de catégoriser les influenceurs sur Instagram. \\
+Pour réaliser cet objectif, nous avons suivi la méthode \textit{CRISP.}\\
+En effet, nous avons commencé par\textbf{ comprendre le domaine de l'application} en identifiant   les  avantages et les inconvénients des solutions existantes  et en fixant les objectifs à atteindre.\\Par la suite , nous sommes passés à la compréhension des données.Cette étape consiste à acquérir les données par web scraping , à les explorer et à identifier les problèmes qui y existent.\\
+Pour remédier aux problèmes surmontés dans l'étape précédente , nous sommes passés à la \textbf{préparation des données}.Ceci  consiste à structurer les données dans une base de données appropriée, dans notre cas MongoDb,et à les nettoyer. Le nettoyage passe par plusieurs étapes allant de la traduction jusqu'à la lemmatisation. \\
+Une fois les données préparées, nous nous sommes plongés dans la\textbf{ modélisation}. Nous avons testé deux modèles de Topic Learning célébrés  à savoir LDA et BERTopic. \\
+La modélisation est suivie par \textbf{l'évaluation} via deux méthodes : la méthode analytique et la méthode graphique. L'évaluation a conduit à favoriser BERTopic sur LDA pour notre cas d'utilisation spécifique. \\
+La dernière étape était de\textbf{ déployer} notre modèle et tester son bon fonctionnement dans un environnement de production avec une api que nous avions implémentée et ce à travers une interface graphique.\\
+Pour clôturer notre rapport, ce projet nous a servi d'une introduction fructueuse au domaine de l'intelligence artificielle et de l'apprentissage automatique, et nous avons hâte de continuer à l'explorer davantage
+\clearpage
+
+\printbibliography[heading=bibintoc,title=Bibliographie]
+\end{document}

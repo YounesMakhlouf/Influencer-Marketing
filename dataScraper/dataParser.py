@@ -2,9 +2,9 @@ import jmespath
 
 
 def parse_user(data):
-	"""Parse instagram user's hidden web dataset for user's data"""
-	result = jmespath.search(
-		"""{
+    """Parse instagram user's hidden web dataset for user's data"""
+    result = jmespath.search(
+        """{
 		name: full_name,
 		username: username,
 		id: id,
@@ -14,7 +14,7 @@ def parse_user(data):
 		email: business_email,
 		bio: biography,
 		bio_links: bio_links[].url,
-		homepage: external_url,        
+		homepage: external_url,
 		followers: edge_followed_by.count,
 		follows: edge_follow.count,
 		facebook_id: fbid,
@@ -23,7 +23,7 @@ def parse_user(data):
 		profile_image: profile_pic_url_hd,
 		video_count: edge_felix_video_timeline.count,
 		videos: edge_felix_video_timeline.edges[].node.{
-			id: id, 
+			id: id,
 			title: title,
 			shortcode: shortcode,
 			thumb: display_url,
@@ -39,8 +39,8 @@ def parse_user(data):
 			duration: video_duration
 		},
 		image_count: edge_owner_to_timeline_media.count,
-		images: edge_felix_video_timeline.edges[].node.{
-			id: id, 
+		images: edge_owner_to_timeline_media.edges[].node.{
+			id: id,
 			title: title,
 			shortcode: shortcode,
 			src: display_url,
@@ -53,13 +53,13 @@ def parse_user(data):
 			taken_at: taken_at_timestamp,
 			likes: edge_liked_by.count,
 			location: location.name,
-			accesibility_caption: accessibility_caption,
+			accessibility_caption: accessibility_caption,
 			duration: video_duration
 		},
 		saved_count: edge_saved_media.count,
 		collections_count: edge_saved_media.count,
 		related_profiles: edge_related_profiles.edges[].node.username
 	}""",
-		data,
-	)
-	return result
+        data,
+    )
+    return result
